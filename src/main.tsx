@@ -11,12 +11,14 @@ import ApplicationCreate from "./components/Application/ApplicationCreate";
 import ApplicationList from "./components/Application/ApplicationList";
 import ApplicationEdit from "./components/Application/ApplicationEdit";
 import ApplicationDetail from "./components/Application/ApplicationDetail";
+import Homepage from "./components/Homepage";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
+          <Route path="/" element={<Homepage />} />
           <Route path="/register" element={<UserRegister />}></Route>
           <Route path="/login" element={<UserLogin />}></Route>
         </Route>
