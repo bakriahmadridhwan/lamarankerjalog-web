@@ -10,6 +10,7 @@ import UserLogout from "./components/User/UserLogout";
 import ApplicationCreate from "./components/Application/ApplicationCreate";
 import ApplicationList from "./components/Application/ApplicationList";
 import ApplicationEdit from "./components/Application/ApplicationEdit";
+import ApplicationDetail from "./components/Application/ApplicationDetail";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -28,6 +29,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="applications">
             <Route index element={<ApplicationList />}></Route>
             <Route path="create" element={<ApplicationCreate />} />
+            <Route path=":id" element={<ApplicationDetail />} />
             <Route path=":id/edit" element={<ApplicationEdit />} />
           </Route>
         </Route>
