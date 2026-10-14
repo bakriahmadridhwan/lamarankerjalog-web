@@ -98,7 +98,7 @@ export const userDetail = async (token: string): Promise<Response> => {
 };
 
 export const userLogout = async (token: string): Promise<Response> => {
-  return await fetch(`${import.meta.env.VITE_API_PATH}/users/logout`, {
+  return await fetch(`${import.meta.env.VITE_API_PATH}/users/current`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",
