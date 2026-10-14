@@ -20,6 +20,24 @@ export type CreateApplicationRequest = {
   notes?: string;
 };
 
+export type Application = {
+  id: number;
+  company: string;
+  job_title: string;
+  location?: string;
+  link?: string;
+  application_date: string;
+  status: ApplicationStatus;
+  notes?: string;
+};
+
+export type ListApplicationsRequest = {
+  q?: string;
+  location?: string;
+  status?: ApplicationStatus | "";
+  page?: number;
+};
+
 export const applicationCreate = async (
   token: string,
   request: CreateApplicationRequest,
@@ -32,5 +50,35 @@ export const applicationCreate = async (
       "X-API-TOKEN": token,
     },
     body: JSON.stringify(request),
+  });
+};
+
+export const applicationList = async (
+  token: string,
+  { q, location, status, page }: ListApplicationsRequest = {},
+): Promise<Response> => {
+  const url = new URL(`${import.meta.env.VITE_API_PATH}/applications`);
+
+  if (q) url.searchParams.append("q", q);
+  if (location) url.searchParams.append("location", location);
+  if (status) url.searchParams.append("status", status);
+  if (page) url.searchParams.append("page", String(page));
+
+  return await fetch(url, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "X-API-TOKEN": token,
+    },
+  });
+};
+
+export const applicationDelete = async (token: string, id: number) => {
+  return await fetch(`${import.meta.env.VITE_API_PATH}/applications/${id}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "X-API-TOKEN": token,
+    },
   });
 };

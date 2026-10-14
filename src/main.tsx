@@ -8,6 +8,7 @@ import DashboardLayout from "./components/DashboardLayout";
 import UserProfile from "./components/User/UserProfile";
 import UserLogout from "./components/User/UserLogout";
 import ApplicationCreate from "./components/Application/ApplicationCreate";
+import ApplicationList from "./components/Application/ApplicationList";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -24,7 +25,7 @@ createRoot(document.getElementById("root")!).render(
           </Route>
 
           <Route path="applications">
-            <Route index element={<div>Applications</div>}></Route>
+            <Route index element={<ApplicationList />}></Route>
             <Route path="create" element={<ApplicationCreate />} />
           </Route>
         </Route>
