@@ -38,6 +38,14 @@ export type ListApplicationsRequest = {
   page?: number;
 };
 
+export type UpdateApplicationRequest = Partial<
+  Omit<CreateApplicationRequest, "location" | "link" | "notes">
+> & {
+  location?: string | null;
+  link?: string | null;
+  notes?: string | null;
+};
+
 export const applicationCreate = async (
   token: string,
   request: CreateApplicationRequest,
@@ -80,5 +88,34 @@ export const applicationDelete = async (token: string, id: number) => {
       Accept: "application/json",
       "X-API-TOKEN": token,
     },
+  });
+};
+
+export const applicationDetail = async (
+  token: string,
+  id: number,
+): Promise<Response> => {
+  return await fetch(`${import.meta.env.VITE_API_PATH}/applications/${id}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "X-API-TOKEN": token,
+    },
+  });
+};
+
+export const applicationUpdate = async (
+  token: string,
+  id: number,
+  request: UpdateApplicationRequest,
+): Promise<Response> => {
+  return await fetch(`${import.meta.env.VITE_API_PATH}/applications/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "X-API-TOKEN": token,
+    },
+    body: JSON.stringify(request),
   });
 };

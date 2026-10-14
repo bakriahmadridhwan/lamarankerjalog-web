@@ -350,6 +350,12 @@ export default function ApplicationList() {
                     <span className="font-medium w-24">Status:</span>
                     <span>{application.status}</span>
                   </p>
+
+                  <p className="flex items-center">
+                    <i className="fas fa-book text-gray-500 w-6"></i>
+                    <span className="font-medium w-24">Notes:</span>
+                    <span>{application.notes || "-"}</span>
+                  </p>
                 </div>
               </Link>
               <div className="mt-4 flex justify-end space-x-3">
