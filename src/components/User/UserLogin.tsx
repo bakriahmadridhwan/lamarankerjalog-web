@@ -108,6 +108,9 @@ export default function UserLogin() {
               Sign up
             </Link>
           </div>
+          <div className="text-center text-gray-300 text-sm font-medium mt-1">
+            <Link to="/">Home</Link>
+          </div>
         </form>
       </div>
     </>
